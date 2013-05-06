@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent"
+    android:layout_height="match_parent" xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="top" xmlns:tools="http://schemas.android.com/tools">
+
+    <View
+        android:id="@+id/layoutHelper"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+    <ProgressBar
+        android:id="@+id/volumeBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="16dip"  
+        android:max="100"
+        />
+    <ToggleButton 
+        android:id="@+id/gatheringDataToggle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/layoutHelper"
+        android:textOff="Start gathering audio data"
+        android:textOn="Stop gathering audio data"
+        android:layout_marginTop="25dip"
+        android:onClick="gatheringDataToggleListener"
+        />
+    <Button
+        android:id="@+id/groundTruthSelecterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/gatheringDataToggle"
+        android:text=""
+        android:layout_marginTop="25dip"
+        android:onClick="groundTruthSelecterButtonListener"
+        />
+    
+</RelativeLayout>
