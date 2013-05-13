@@ -85,7 +85,7 @@ public void groundTruthSelecterButtonListener(View w) {
 			groundTruthSelecterButton.setText(ACTIVITY.getDescription(groundTruth));
 			if(atwAsyncTask != null){
 				atwAsyncTask.cancel(true);
-				atwAsyncTask = new AudioToWotKitAsyncTask(false);
+				atwAsyncTask = new AudioToWotKitAsyncTask();
 	    		atwAsyncTask.execute(groundTruth);
 			}
 			dialog.dismiss();
@@ -96,7 +96,7 @@ public void groundTruthSelecterButtonListener(View w) {
     public void gatheringDataToggleListener(View v){
     	//AudioContextAsyncTask aCAsyncTask = new AudioContextAsyncTask(this);
     	if(gatheringDataToggle.isChecked()){
-    		atwAsyncTask = new AudioToWotKitAsyncTask(true);
+    		atwAsyncTask = new AudioToWotKitAsyncTask();
     		atwAsyncTask.execute(groundTruth);
     	} else{
     		if(atwAsyncTask != null){
@@ -166,8 +166,7 @@ public void groundTruthSelecterButtonListener(View w) {
     
     private class AudioToWotKitAsyncTask extends AsyncTask<ACTIVITY, Integer, Void>{
     	String groundTruth;
-    	boolean postToWotKit;
-    	
+    	    	
     	AudioRecord recorder;
     	int windowsPerSecond;
     	FFT fft = new FFT(CONST.WINDOW_SIZE.val, CONST.Fs.val);
@@ -181,9 +180,7 @@ public void groundTruthSelecterButtonListener(View w) {
         //TODO: set SENSOR_NAME based on input
         private static final String SENSOR_NAME = "audio0";
         
-        public AudioToWotKitAsyncTask(boolean post){
-        	postToWotKit = post;
-        }
+        private static final boolean POST_TO_WOTKIT = true;
         
     	@Override
     	protected void onPreExecute(){
@@ -207,7 +204,7 @@ public void groundTruthSelecterButtonListener(View w) {
     		
     		while(!isCancelled()){
     			read1sAudio(energyBands, windowsPerSecond, recorder, data, tempEnergyBands, fftIn, fftOut, fft);
-    			if(postToWotKit) postToWotKit();
+    			if(POST_TO_WOTKIT) postToWotKit();
 //    			String out = Double.toString(energyBands[0]);
 //    			for(int i = 1; i < energyBands.length; i++) out += " " + Double.toString(energyBands[i]);
 //    			Log.v("bands", out);
@@ -236,6 +233,7 @@ public void groundTruthSelecterButtonListener(View w) {
 	        		nvpList.add(new BasicNameValuePair("band"+Integer.toString(i), Double.toString(energyBands[i])));
 	        	}
 	        	nvpList.add(new BasicNameValuePair("ground", groundTruth));
+	        	Log.v("ground truth", groundTruth);
 	        	httppost.setEntity(new UrlEncodedFormEntity(nvpList));
 	        	
 	        	
