@@ -96,7 +96,7 @@ public void groundTruthSelecterButtonListener(View w) {
     public void gatheringDataToggleListener(View v){
     	//AudioContextAsyncTask aCAsyncTask = new AudioContextAsyncTask(this);
     	if(gatheringDataToggle.isChecked()){
-    		atwAsyncTask = new AudioToWotKitAsyncTask(false);
+    		atwAsyncTask = new AudioToWotKitAsyncTask(true);
     		atwAsyncTask.execute(groundTruth);
     	} else{
     		if(atwAsyncTask != null){
