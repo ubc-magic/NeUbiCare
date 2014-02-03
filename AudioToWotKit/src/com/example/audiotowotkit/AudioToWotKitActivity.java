@@ -29,14 +29,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.Toast;
 import android.widget.ToggleButton;
-
-import android.webkit.WebSettings.ZoomDensity;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-
-import android.graphics.Bitmap;
 
 
 public class AudioToWotKitActivity extends Activity {
@@ -48,7 +41,6 @@ public class AudioToWotKitActivity extends Activity {
 	ToggleButton gatheringDataToggle = null;
 	Button groundTruthSelecterButton = null;
 	ProgressBar volumeBar = null;
-	WebView mWebView = null;
 	
 	AudioToWotKitAsyncTask atwAsyncTask;
 	ArrayAdapter<String> dataAdapter;
@@ -72,68 +64,6 @@ public class AudioToWotKitActivity extends Activity {
         }
         
         dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, activityList);;
-        
-
-        try
-  		{	
-    	mWebView = (WebView)findViewById(R.id.webView);
-    	
-  		//setContentView(R.layout.buttons);
-  		//mWebView = (WebView)mWebView.findViewById(R.id.webView);
-  		mWebView.getSettings().setLoadWithOverviewMode(true);
-  		mWebView.getSettings().setUseWideViewPort(true);
-  		mWebView.getSettings().setJavaScriptEnabled(true);
-  		mWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-  		//mWebView.getSettings().setLightTouchEnabled(true);
-  		mWebView.getSettings().setSupportZoom(true);
-  		mWebView.getSettings().setDomStorageEnabled(true);
-  		mWebView.setInitialScale(1);
-  		mWebView.getSettings().setDefaultZoom(ZoomDensity.FAR);
-
-  		mWebView.setWebViewClient(new WebViewClient() {
-  			//@Override
-  	        //public boolean shouldOverrideUrlLoading(WebView view, String url) {
-  	            //return (false);
-  				//view.loadUrl(url);
-  		         // return true;
-  	        //}
-  			/*
-  		    @Override
-  		    public void onPageStarted(WebView view, String url, Bitmap favicon) {
-  		        super.onPageStarted(view, url, favicon);
-  		        mWebView.loadUrl("javascript: " +
-  		        		"var username = document.getElementById(this.id + 'dawood').value; " +
-  		        		"var password = document.getElementById(this.id + '1234dawood').value; " +
-  		        		"this.http.open('get', this.action, false, username, password); " +
-  		        		"this.http.send('');" +
-  		        		"if (http.status == 200) {  document.location = this.action;} " +
-  		        		"else { alert('Incorrect username and/or password.'); }"); 
-  		       // mWebView.setIsnitialScale((int)(100*mWebView.getScale()));
-  		        }
-  		    */
-  		  @Override
-		    public void onPageFinished(WebView view, String url) {
-		        super.onPageFinished(view, url); 
-		       mWebView.setInitialScale((int)(75*mWebView.getScale()));
-		        }
-  		    
-  		});		
-  		//String customHtml = "<html><body><h2>Local Test</h2></body></html>";
-  		//mWebView.loadData(customHtml, "text/html", "UTF-8");		
-  		//mWebView.loadUrl("http://142.103.25.29/test.html");		
-  		mWebView.loadUrl("http://142.103.25.29:8080/wotkit/dashboard_frame/7");
-  		}
-  		catch (Exception e)
-  		{
-  			Toast.makeText(getApplicationContext(), "Error= " + e.getMessage(), Toast.LENGTH_LONG ).show();	
-  		}
-          
-          //RelativeLayout layout = new RelativeLayout(this);
-  		//layout.addView(mWebView);
-  		//setContentView(layout);
-        
-        
-        
     }
 	
     @Override

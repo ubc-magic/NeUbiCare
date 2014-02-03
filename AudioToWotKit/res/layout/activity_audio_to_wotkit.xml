@@ -37,20 +37,4 @@
         android:onClick="groundTruthSelecterButtonListener"
         />
     
-    			
-<WebView
-		    android:id="@+id/webView"
-		    android:layout_width="match_parent"
-		    android:layout_height="150dp"
-		    android:layout_alignParentLeft="true"
-		    android:layout_margin="0dp"
-		    android:paddingBottom="2dp"
-		    android:paddingLeft="2dp"
-		    android:paddingRight="2dp"
-		     android:paddingTop="2dp"
-		    android:layout_below="@+id/groundTruthSelecterButton"
-		    android:layout_centerHorizontal="true" />
-
-
-    
 </RelativeLayout>
